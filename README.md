@@ -76,7 +76,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [Michael Nabil](https://github.com/MichaelNabil230)
+- [Michael Nabil](https://github.com/michaelnabil230)
 - [All Contributors](../../contributors)
 
 ## License

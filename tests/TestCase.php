@@ -3,8 +3,8 @@
 namespace MichaelNabil230\LaravelPaymentUrway\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Orchestra\Testbench\TestCase as Orchestra;
 use MichaelNabil230\LaravelPaymentUrway\LaravelPaymentUrwayServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {
@@ -22,15 +22,5 @@ class TestCase extends Orchestra
         return [
             LaravelPaymentUrwayServiceProvider::class,
         ];
-    }
-
-    public function getEnvironmentSetUp($app)
-    {
-        config()->set('database.default', 'testing');
-
-        /*
-        $migration = include __DIR__.'/../database/migrations/create_laravel-payment-urway_table.php.stub';
-        $migration->up();
-        */
     }
 }

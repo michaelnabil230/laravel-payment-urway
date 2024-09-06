@@ -2,7 +2,7 @@
     "name": "michaelnabil230/laravel-payment-urway",
     "description": "This is my package laravel-payment-urway",
     "keywords": [
-        "Michael Nabil",
+        "MichaelNabil230",
         "laravel",
         "laravel-payment-urway"
     ],
@@ -21,9 +21,10 @@
         "illuminate/contracts": "^10.0||^11.0"
     },
     "require-dev": {
+        "larastan/larastan": "^2.9",
+        "laravel/facade-documenter": "dev-main",
         "laravel/pint": "^1.14",
         "nunomaduro/collision": "^8.1.1||^7.10.0",
-        "larastan/larastan": "^2.9",
         "orchestra/testbench": "^9.0.0||^8.22.0",
         "pestphp/pest": "^2.34",
         "pestphp/pest-plugin-arch": "^2.7",
@@ -80,5 +81,11 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": {
+        "facade-documenter": {
+            "type": "vcs",
+            "url": "git@github.com:laravel/facade-documenter.git"
+        }
+    }
 }

@@ -2,24 +2,34 @@
 
 namespace MichaelNabil230\LaravelPaymentUrway;
 
+use Illuminate\Support\Facades\Route;
+use MichaelNabil230\LaravelPaymentUrway\Http\Controllers\UrwayController;
+use MichaelNabil230\LaravelPaymentUrway\Http\Middleware\UrwayKeyValidatorHash;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use MichaelNabil230\LaravelPaymentUrway\Commands\LaravelPaymentUrwayCommand;
 
 class LaravelPaymentUrwayServiceProvider extends PackageServiceProvider
 {
+    public function registeringPackage(): void
+    {
+        $this->registerRouteMacros();
+    }
+
     public function configurePackage(Package $package): void
     {
-        /*
-         * This class is a Package Service Provider
-         *
-         * More info: https://github.com/spatie/laravel-package-tools
-         */
         $package
             ->name('laravel-payment-urway')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_laravel_payment_urway_table')
-            ->hasCommand(LaravelPaymentUrwayCommand::class);
+            ->hasConfigFile();
+    }
+
+    protected function registerRouteMacros(): void
+    {
+        Route::macro('urway', function (string $baseUrl = 'webhook') {
+            Route::prefix($baseUrl)->group(function () {
+                Route::post('urway', UrwayController::class)
+                    ->name('urway')
+                    ->middleware(UrwayKeyValidatorHash::class);
+            });
+        });
     }
 }
