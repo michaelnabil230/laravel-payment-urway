@@ -23,13 +23,6 @@ You can install the package via composer:
 composer require michaelnabil230/laravel-payment-urway
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="laravel-payment-urway-migrations"
-php artisan migrate
-```
-
 You can publish the config file with:
 
 ```bash
@@ -40,20 +33,28 @@ This is the contents of the published config file:
 
 ```php
 return [
+    'mode' => env('URWAY_MODE', 'test'),
+    'webhook_key' => env('URWAY_WEBHOOK_KEY'),
+    'auth' => [
+        'terminal_id' => env('URWAY_TERMINAL_ID'),
+        'password' => env('URWAY_PASSWORD'),
+        'merchant_key' => env('URWAY_MERCHANT_KEY'),
+    ],
 ];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="laravel-payment-urway-views"
 ```
 
 ## Usage
 
 ```php
-$laravelPaymentUrway = new MichaelNabil230\LaravelPaymentUrway();
-echo $laravelPaymentUrway->echoPhrase('Hello, MichaelNabil230!');
+return MichaelNabil230\LaravelPaymentUrway\LaravelPaymentUrway::make()
+        ->setAmount(11.2)
+        ->setTrackId('123456789')
+        ->setCustomerEmail('hello@example.com')
+        ->setCustomerIp('127.0.0.1')
+        ->setCurrency('SAR')
+        ->setCountry('SA')
+        ->setRedirectUrl(route('urway-response'))
+        ->pay();
 ```
 
 ## Testing
@@ -61,6 +62,15 @@ echo $laravelPaymentUrway->echoPhrase('Hello, MichaelNabil230!');
 ```bash
 composer test
 ```
+
+## Support
+
+[![Image for sponsor](./.assets/sponsors.png)](https://github.com/sponsors/michaelnabil230)
+
+Or
+
+[![Ko-fi](.assets/ko-fi.png)](https://ko-fi.com/michaelnabil230)[![Buymeacoffee](.assets/buymeacoffee.png)](https://www.buymeacoffee.com/michaelnabil230)[![Paypal](.assets/paypal.png)](https://www.paypal.com/paypalme/MichaelNabil23)
+
 
 ## Changelog
 
